@@ -627,6 +627,7 @@ a.article-title:hover {
 .article-entry blockquote {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
+  color: #777;
   margin: 1.6em 20px;
   text-align: left;
 }
