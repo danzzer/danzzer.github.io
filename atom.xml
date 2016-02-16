@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://danzzer.github.io/"/>
-  <updated>2016-02-16T08:08:13.000Z</updated>
+  <updated>2016-02-16T08:14:41.000Z</updated>
   <id>http://danzzer.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://danzzer.github.io/2016/02/16/%E4%BD%BF%E7%94%A8Promise%E5%90%88%E7%90%86%E5%A4%84%E7%90%86%E6%A8%A1%E5%9D%97%E5%B0%81%E8%A3%85%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E5%85%B3%E7%B3%BB/"/>
     <id>http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/</id>
     <published>2016-02-16T06:23:19.000Z</published>
-    <updated>2016-02-16T08:08:13.000Z</updated>
+    <updated>2016-02-16T08:14:41.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B"><a href="#u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B" class="headerlink" title="数据到展现的过程"></a>数据到展现的过程</h2><p>对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,<br>主要需要考虑<font color="green">‘view的通用性’</font>和<font color="green">‘data源的多样性’</font>如何结合. </p>
 <p>抽象data-&gt;view的过程如下(MV*都需要手工编码这个过程):</p>
 <ol>
@@ -29,7 +29,7 @@
 </ol>
 <p>结合以上过程解释下:</p>
 <ul>
-<li>view的通用性: 第4过程基本编码后能够在不修改的情况下在其他编码中使用,提高代码复用程度</li>
+<li>view的通用性: 第3过程基本编码后能够在不修改的情况下在其他编码中使用,提高代码复用程度</li>
 <li>data源的多样性: 数据源可能有不同, 相同数据可能需要为不同view配适</li>
 </ul>
 <h2 id="u66FE_u7ECF_u7684_u8FC7_u7A0B_u5316_u7F16_u7801"><a href="#u66FE_u7ECF_u7684_u8FC7_u7A0B_u5316_u7F16_u7801" class="headerlink" title="曾经的过程化编码"></a>曾经的过程化编码</h2><p>独立开发或者维护的时候经常会出现一批如下不能复用的代码, 主要原因大概是写的时候有个念头-“这个代码过程只会在这里用”,当然结局都是填坑比挖坑还累</p>
