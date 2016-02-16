@@ -6,22 +6,50 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Danzzer&#39;s Blog">
-    <title>归档: 2016 - Danzzer&#39;s Blog</title>
+    <title>使用Promise合理处理模块封装和数据的关系 - Danzzer&#39;s Blog</title>
     <meta name="author" content="Danzzer">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="My thoughts here">
+    <meta name="description" content="数据到展现的过程对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,主要需要考虑‘view的通用性’和‘data源的多样性’如何结合. 
+抽象data-&amp;gt;view的过程如下(MV*都需要手工编码这个过程):
+
+获取数据源(url)
+从数据源获取数据后,配适数据为view需要的格式
+view展现数据
+
+结合以上过程解释下:
+
+view的通用性: 第4过程基本编码后能">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Danzzer's Blog">
-<meta property="og:url" content="http://danzzer.github.io/archives/2016/index.html">
+<meta property="og:title" content="使用Promise合理处理模块封装和数据的关系">
+<meta property="og:url" content="http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/index.html">
 <meta property="og:site_name" content="Danzzer's Blog">
-<meta property="og:description" content="My thoughts here">
+<meta property="og:description" content="数据到展现的过程对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,主要需要考虑‘view的通用性’和‘data源的多样性’如何结合. 
+抽象data-&amp;gt;view的过程如下(MV*都需要手工编码这个过程):
+
+获取数据源(url)
+从数据源获取数据后,配适数据为view需要的格式
+view展现数据
+
+结合以上过程解释下:
+
+view的通用性: 第4过程基本编码后能">
+<meta property="og:updated_time" content="2016-02-16T08:08:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Danzzer's Blog">
-<meta name="twitter:description" content="My thoughts here">
+<meta name="twitter:title" content="使用Promise合理处理模块封装和数据的关系">
+<meta name="twitter:description" content="数据到展现的过程对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,主要需要考虑‘view的通用性’和‘data源的多样性’如何结合. 
+抽象data-&amp;gt;view的过程如下(MV*都需要手工编码这个过程):
+
+获取数据源(url)
+从数据源获取数据后,配适数据为view需要的格式
+view展现数据
+
+结合以上过程解释下:
+
+view的通用性: 第4过程基本编码后能">
     
     
         
@@ -56,7 +84,7 @@
 
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="3">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <h1 class="header-title">
         <a class="header-title-link" href="/ ">Danzzer&#39;s Blog</a>
@@ -74,7 +102,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="3">
     
     
         <ul class="sidebar-buttons">
@@ -194,27 +222,21 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="3"
                  class="
                         hasCoverMetaIn
                         ">
                 
-    
-
-<section class="postShorten-group main-content-wrap">
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
-                            使用Promise合理处理模块封装和数据的关系
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            使用Promise合理处理模块封装和数据的关系
+        </h1>
+    
+    <div class="post-meta">
     <time itemprop="datePublished" content="Tue Feb 16 2016 14:23:19 GMT+0800">
 	
 		    2月 16, 2016
@@ -222,11 +244,11 @@
     </time>
     
 </div>
-            </div>
-            
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <h2 id="u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B"><a href="#u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B" class="headerlink" title="数据到展现的过程"></a>数据到展现的过程</h2><p>对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,<br>主要需要考虑<font color="green">‘view的通用性’</font>和<font color="green">‘data源的多样性’</font>如何结合. </p>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h2 id="u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B"><a href="#u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B" class="headerlink" title="数据到展现的过程"></a>数据到展现的过程</h2><p>对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,<br>主要需要考虑<font color="green">‘view的通用性’</font>和<font color="green">‘data源的多样性’</font>如何结合. </p>
 <p>抽象data-&gt;view的过程如下(MV*都需要手工编码这个过程):</p>
 <ol>
 <li>获取数据源(url)</li>
@@ -253,218 +275,73 @@
 <p>三者之间除了2和3在最终数据格式上有逻辑规约,其他没有耦合;即使逻辑规约改变了, parser和display的替换都比hardcode 方便</p>
 <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>注意promise 除了很好避免了callback hell, 同时更可贵的是在抽象层面上将”过程”很好的封装, 假设所有中间过程的处理结果都是promise化,那么代码能够很清晰反应逻辑顺序</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//语言有时候很无力,看下面你大概就知道了</span></span><br><span class="line"><span class="tag">var</span> begin = <span class="function"><span class="title">A</span><span class="params">()</span></span></span><br><span class="line">begin.<span class="function"><span class="title">then</span><span class="params">(B)</span></span>.<span class="function"><span class="title">then</span><span class="params">(C)</span></span>.....</span><br></pre></td></tr></table></figure>
-                    
-                        
+            
+                
 
-                    
-                    
-                        <p>
-                            <a href="/2016/02/16/使用Promise合理处理模块封装和数据的关系/#post-footer" class="postShorten-excerpt_link link">
-                                注释和共享
-                            </a>
-                        </p>
-                    
-                </div>
             
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/02/04/web加载性能/">
-                            web加载性能
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Thu Feb 04 2016 16:48:24 GMT+0800">
-	
-		    2月 04, 2016
-    	
-    </time>
-    
-</div>
-            </div>
-            
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <h2 id="DOM_u548C_u9875_u9762_u5185_u5BB9_u57FA_u672C_u7279_u5F81"><a href="#DOM_u548C_u9875_u9762_u5185_u5BB9_u57FA_u672C_u7279_u5F81" class="headerlink" title="DOM和页面内容基本特征"></a>DOM和页面内容基本特征</h2><ol>
-<li><p>HTML parse 为DOM的过程（初步的Layout）不受页面内标签影响</p>
-</li>
-<li><p>‘同步’的script的加载会阻塞所有(没有优化的情况下)后续资源的加载;css由于不会修改DOM加载都是并行的, 但是可能阻塞‘同时’访问对应属性的script</p>
-</li>
-</ol>
-<p>以下引用<a href="http://taligarsiel.com/Projects/howbrowserswork1.htm" target="_blank" rel="external">参考blog</a>详细描述, 注意有颜色部分：</p>
-<blockquote>
-<p>The order of processing scripts and style sheets</p>
-<p>Scripts</p>
-<p>The model of the web is <font color="green">synchronous</font>. Authors expect scripts to be parsed and executed immediately when the parser reaches a script tag. <font color="green">The parsing of the document halts until the script was executed</font>. If the script is external then the resource must be first fetched from the network - this is also done synchronously, <font color="green">the parsing halts until the resource is fetched</font>. This was the model for many years and is also specified in HTML 4 and 5 specifications. Authors could mark the script as <font color="blue">“defer”</font> and thus it will not halt the document parsing and will execute <font color="blue">after it is parsed</font>. HTML5 adds an option to mark the script as asynchronous so it will be parsed and <font color="blue">executed by a different thread</font>.</p>
-</blockquote>
-<p>注意：script的defer是在dom的parse完成后再执行，async是异步(不同现成)并行执行，这里应该解释的很清晰了</p>
-<blockquote>
-<p>Speculative parsing(部分浏览器内核的优化)</p>
-<p>Both Webkit and Firefox do this optimization. While executing scripts, <font color="green">another thread</font> <font color="red">parses</font> the rest of the document and finds out what other resources need to be loaded from the network and loads them. These way resources can be loaded on parallel connections and the overall speed is better. Note - <font color="blue">the speculative parser doesn’t modify the DOM tree and leaves that to the main parser</font>, it <font color="red">only parses</font> references to external resources like external scripts, style sheets and images.</p>
-</blockquote>
-<p>注意：另外的线程仅仅是‘parse document’（html-&gt;DOM）和‘加载’(network),由于涉及到DOM,javascript的执行过程还是在main parser(UI thread!)中的</p>
-<blockquote>
-<p>Style sheets</p>
-<p>Style sheets on the other hand have a different model. Conceptually it seems that since style sheets don’t change the DOM tree, <font color="green">there is no reason to wait for them and stop the document parsing</font>. There is an issue, though, of scripts asking for style information during the document parsing stage. If the style is not loaded and parsed yet, the script will get wrong answers and apparently this caused lots of problems. It seems to be an edge case but is quite common. Firefox blocks all scripts when there is a style sheet that is still being loaded and parsed. Webkit blocks scripts only when they try to access for certain style properties that may be effected by unloaded style sheets.</p>
-</blockquote>
-<p>注意：javascript对css中的属性有依赖时候可能导致的问题</p>
-<h2 id="u9875_u9762_u52A0_u8F7D_u6162_u7684_u4E00_u4E9B_u539F_u56E0_u63A2_u5BFB"><a href="#u9875_u9762_u52A0_u8F7D_u6162_u7684_u4E00_u4E9B_u539F_u56E0_u63A2_u5BFB" class="headerlink" title="页面加载慢的一些原因探寻"></a>页面加载慢的一些原因探寻</h2><p>结合目前的一些已有的<a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="external">tips(from yahoo)</a>，将按照以下层次探索加载的问题和解决策略</p>
-<ol>
-<li>网络通信建立</li>
-<li>HTTP请求头部,内容大小,传输速率,并发和逻辑依赖</li>
-<li>用户体验和心理</li>
-</ol>
-<h3 id="u7F51_u7EDC_u901A_u4FE1_u5EFA_u7ACB"><a href="#u7F51_u7EDC_u901A_u4FE1_u5EFA_u7ACB" class="headerlink" title="网络通信建立"></a>网络通信建立</h3><p>HTTP由于基于TCP/IP stack存在基本socket通信的一些问题</p>
-<ol>
-<li><p>URL到IP的DNS解析需要消耗时间（20-120ms）</p>
-<blockquote>
-<p>Server DNS的TTL是一个很小的影响因素，主要是client的浏览器和系统中的缓存时间过小会频繁做DNS解析，引用雅虎的做法如下（可能目前大部分浏览器都已经自动优化了）：</p>
-<p>Internet Explorer caches DNS lookups for 30 minutes by default, as specified by the DnsCacheTimeout registry setting. Firefox caches DNS lookups for 1 minute, controlled by the network.dnsCacheExpiration configuration setting. (Fasterfox changes this to 1 hour.)</p>
-</blockquote>
-</li>
-<li><p>socket的建立和销毁需要时间</p>
-<blockquote>
-<p>如果每个资源的获取都要和不同IP建立socket，那么client的系统中会有socket的资源创建过程，必然会耗费一定的时间；socket销毁时也会有TIME-WAIT状态（等待足够的时间以确保远程TCP接收到连接中断请求的确认）导致资源的暂时不可用；如果资源能够策略性通过有限的socket（socket会被复用）获取可以减少此部分的消耗</p>
-</blockquote>
-</li>
-<li><p>IP报文的拆分和合并，主要影响信息利用率，对HTTP的影响可以忽略</p>
-<blockquote>
-<p>以太网的MTU是1500字（由于IPv6的发展，目前网络情况是可能支持巨大包传输的，依赖ISP的实施情况，这里还是基于基础IPv4网络通识解释）,由于此限制 IP层报文过大时会被网络设备自动拆包分组传输，会影响传输效率，但是时间消耗（当前国内网络设备的影响都是毫秒级的）可以被忽视</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><ol>
-<li><p>HTTP （目前常用1.1）协议是无状态协议，那么在一个请求中为了区分客户端状态会附加cookies，如果所有请求都统一cookie那么会造成浪费；各个浏览器可能限制cookies最多4KB以内， 按照目前的网络条件可能是一个微小的改进项</p>
-</li>
-<li><p>Yahoo指出AJAX（XMLHttpRequest）请求方式GET 和 POST 在浏览器上实现不同， 大多数POST都需要俩个TCP报文，GET只有一个；在都能满足需求的基础上，选择GET是减少通信时间的方式（注意是AJAX的GET和POST), <a href="https://josephscott.org/archives/2009/08/xmlhttprequest-xhr-uses-multiple-packets-for-http-post/" target="_blank" rel="external">相关内容</a></p>
-</li>
-<li><p>HTTP中文件和内容大小是我们容易想到的因素，对于图片和文本文件我们可以寻找对应压缩方法，这是工作中经常会处理的</p>
-</li>
-</ol>
-<blockquote>
-<p>图片压缩方法有很多：css sprite做图片合并（复用颜色）同时使用background引用图片）， 使用无损的webfont代替较大的位图，使用webq图片压缩….当然新技术可能会有兼容性问题，<font color="gree">css的base64并不是图片压缩，只是提前了图片渲染的时序</font></p>
-<p>css压缩： 工具化去掉空格和换行，尽量少地写css, 多css文件合并（这个是为了尽快加载所有css）等</p>
-<p>js压缩：基本都是使用uglify.js做混淆（人不可读）和压缩空格和换行等</p>
-<p>web服务器端支持gzip，一般开启后会有不错的效果</p>
-</blockquote>
-<ol>
-<li><p>HTTP的传输速率上很自然会想到服务器带宽，同时CDN的使用可以在地域上部分加速</p>
-</li>
-<li><p>HTTP在浏览器中的‘对一个host的并发请求’和‘并发请求总数’是有限制的，<a href="http://www.browserscope.org/?category=network&amp;v=top" target="_blank" rel="external">参考来源</a>, 合理安排请求的host既可以在tcp层复用socket同时也能按照该特性充分使用并发的限制</p>
-</li>
-</ol>
-<blockquote>
-<p>如果浏览器限制对一个host最多有5个并发请求，总并发请求不超过10。那么同等网络条件下（无限带宽和资源），对一个host请求10个文件将比对两个host分别请求5个文件要慢</p>
-<p>因此使用cdn的时候可以设置多个domain（多host）来应用以上的技巧</p>
-</blockquote>
-<ol>
-<li>实际使用中通常会看到javascript通过添加script来加载动态的脚本引用，该引用脚本将对DOM的一些样式属性或者DOM做操作，那么这些DOM的样式在脚本执行完成前对于用户来说将是未完成的显示样式（前端MV*的框架一般可能空白一会!）</li>
-</ol>
-<blockquote>
-<p>一般不在javascript中做dom的操作是应为相对很慢</p>
-</blockquote>
-<h3 id="u7528_u6237_u4F53_u9A8C"><a href="#u7528_u6237_u4F53_u9A8C" class="headerlink" title="用户体验"></a>用户体验</h3><p>页面的加载性能和用户‘快速’体验不是同等的概念：加载只是针对资源，而用户看到的只是浏览器可视区域的内容，注意用户需要的是他们眼里的：</p>
-<ol>
-<li>快速：开了页面就能看到东西，虽然用户并不知道那是什么，但是他知道这个页面在运行，并且有基本信息可以阅读</li>
-</ol>
-<blockquote>
-<p>某些时候mobile环境下网速&lt;5KB,感觉一切都是白费的</p>
-</blockquote>
-<p>很自然的我们可以：</p>
-<ol>
-<li>在html内的style内使用css做缓冲动画（比如旋转的各种图标）, 真实的内容渲染时再去掉它，那么用户第一眼感觉上是这个图片在加载</li>
-<li>对于图片这种大文件可以使用 lowsrc做图片预载（先使用模糊小图片，后用完全尺寸替换), 可以使用默认占位的图片或者背景色</li>
-<li>由于用户看到的是可视区域内的内容，那么可视区域外的图片（貌似也只能对图片）可以做懒加载（判断是否在window.innerXXX范围内）或者延迟加载（使用settimeout延迟加载资源）</li>
-</ol>
-<blockquote>
-<p>懒加载 需要在window的一些事件中对图片遍历判断是否开始出现在可视区域（对的你得自己维护一个或者多个队列），具体做法请参考<a href="http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433" target="_blank" rel="external">这里</a>，开始出现时再通过javascript加载</p>
-</blockquote>
-<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>目前只想到这么多，好的想法请Pull request</p>
-
-                    
-                        
-
-                    
-                    
-                        <p>
-                            <a href="/2016/02/04/web加载性能/#post-footer" class="postShorten-excerpt_link link">
-                                注释和共享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/04/web加载性能/" data-tooltip="web加载性能">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/02/04/hello-world/">
-                            Hello World
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Thu Feb 04 2016 16:43:11 GMT+0800">
-	
-		    2月 04, 2016
-    	
-    </time>
-    
-</div>
-            </div>
+        <li class="post-action">
             
+                <a class="post-action-btn btn btn--default" href="#">
             
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-                    
-                        
-
-                    
-                    
-                        <p>
-                            <a href="/2016/02/04/hello-world/#post-footer" class="postShorten-excerpt_link link">
-                                注释和共享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">第 1 页 共 1 页</li>
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+            
+        
+    </div>
+</article>
 
 
 
@@ -475,6 +352,83 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/04/web加载性能/" data-tooltip="web加载性能">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
             
         </div>
         
@@ -515,6 +469,8 @@
     <!--SCRIPTS-->
 <script src="/assets/js/scrip-gfmrkxcl0qohe3cfdgxhzvc0yrceqta8i4iix0txvn8q4o2adlqd5n0jmkvt.min.js" type="text/javascript"></script>
 <!--SCRIPTS END-->
+
+    
 
 
 

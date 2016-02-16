@@ -208,6 +208,73 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/2016/02/16/使用Promise合理处理模块封装和数据的关系/">
+                            使用Promise合理处理模块封装和数据的关系
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Tue Feb 16 2016 14:23:19 GMT+0800">
+	
+		    2月 16, 2016
+    	
+    </time>
+    
+</div>
+            </div>
+            
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <h2 id="u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B"><a href="#u6570_u636E_u5230_u5C55_u73B0_u7684_u8FC7_u7A0B" class="headerlink" title="数据到展现的过程"></a>数据到展现的过程</h2><p>对Javascript代码做模块封装时一般都会在数据处理过程如何拆分上纠缠很久,<br>主要需要考虑<font color="green">‘view的通用性’</font>和<font color="green">‘data源的多样性’</font>如何结合. </p>
+<p>抽象data-&gt;view的过程如下(MV*都需要手工编码这个过程):</p>
+<ol>
+<li>获取数据源(url)</li>
+<li>从数据源获取数据后,配适数据为view需要的格式</li>
+<li>view展现数据</li>
+</ol>
+<p>结合以上过程解释下:</p>
+<ul>
+<li>view的通用性: 第4过程基本编码后能够在不修改的情况下在其他编码中使用,提高代码复用程度</li>
+<li>data源的多样性: 数据源可能有不同, 相同数据可能需要为不同view配适</li>
+</ul>
+<h2 id="u66FE_u7ECF_u7684_u8FC7_u7A0B_u5316_u7F16_u7801"><a href="#u66FE_u7ECF_u7684_u8FC7_u7A0B_u5316_u7F16_u7801" class="headerlink" title="曾经的过程化编码"></a>曾经的过程化编码</h2><p>独立开发或者维护的时候经常会出现一批如下不能复用的代码, 主要原因大概是写的时候有个念头-“这个代码过程只会在这里用”,当然结局都是填坑比挖坑还累</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//伪代码,不是jquery</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line"> <span class="comment">//1. 获取数据源 </span></span><br><span class="line"> url:<span class="string">"url"</span>, </span><br><span class="line"> queryCondition: &#123;&#125;</span><br><span class="line"> </span><br><span class="line"> success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">//这里假设data已经转化为object</span></span><br><span class="line">     <span class="comment">//2. parse数据</span></span><br><span class="line">     <span class="keyword">var</span> displayData = &#123;</span><br><span class="line">         name: data.othername</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">//3. view展现数据</span></span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">"view"</span>).innerHtml(...)</span><br><span class="line"> &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="u600E_u4E48_u590D_u7528_3F"><a href="#u600E_u4E48_u590D_u7528_3F" class="headerlink" title="怎么复用?"></a>怎么复用?</h2><p>以上过程化代码存在如下问题</p>
+<ol>
+<li>对于异步请求处理, 使用了callback写法, callback hell 不可避免, 需要使用Promise解决.<a href="http://callbackhell.com/" target="_blank" rel="external">问题参考</a>, <a href="https://www.phodal.com/blog/javascript-promise/" target="_blank" rel="external">中文的</a></li>
+<li>对于url,parse,view 的需求变化需要hard code, 必须做封装</li>
+</ol>
+<p>为了封装 “获取数据源”, 我曾经这么写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dataSource = [&#123;</span><br><span class="line">     url: <span class="string">"abc"</span>,</span><br><span class="line">     queryCondition,</span><br><span class="line">     ....</span><br><span class="line"> &#125;]</span><br><span class="line"> .....</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">dataFetchFactory</span> (<span class="params">source</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> $.promisedAjax(&#123;</span><br><span class="line">         url: source.url,</span><br><span class="line">         queryCondition: source.queryCondition</span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"> .....</span><br><span class="line"> <span class="keyword">var</span> handleData = dataFetchFactory(dataSource[<span class="number">0</span>])</span><br><span class="line"> handle.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> displayData = &#123;</span><br><span class="line">         name: data.othername</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">"view"</span>).innerHtml(...)</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+<p>虽然’获取数据源’ 被封装成了类似工厂的用法,但是工厂函数内依然逻辑结构上耦合了数据源的数据结构, 如果dataSource修改了那么factory的函数也必须修改;同时依然不能处理多个parse的需求</p>
+<p>近期改写过程如下,此方案还是需要深入思考和修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.promise直接视为数据源,不再需要factory, 不同数据源只需要创建不同的promise</span></span><br><span class="line"><span class="comment">//如果需要错误处理,则在$.promisedAjax上再包装一层promise</span></span><br><span class="line"><span class="keyword">var</span> dataSource = [</span><br><span class="line">     $.promisedAjax(&#123;</span><br><span class="line">         url: source.url,</span><br><span class="line">         queryCondition: source.queryCondition</span><br><span class="line">     &#125;)</span><br><span class="line">]</span><br><span class="line">.....</span><br><span class="line"><span class="comment">//2. 为了处理parse的不同需求问题,需要不同的parser</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">var</span> parser1 = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> &#123; name: data.othername &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> parser2 = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     <span class="comment">//满足相同data的不同parse需求</span></span><br><span class="line">     <span class="keyword">return</span> &#123; 名字: data.othername&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> parse3 = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     <span class="comment">//不同data的parse</span></span><br><span class="line">     <span class="keyword">return</span> &#123; name: data.cutename &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// parser 也可以考虑promise化</span></span><br><span class="line"><span class="keyword">var</span> parsePromise = <span class="function"><span class="keyword">function</span>(<span class="params">promise</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> deferred = Q()</span><br><span class="line">     promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> data = &#123; name: data.cutename &#125;</span><br><span class="line">         deferred.resolve(data)</span><br><span class="line">     &#125;)</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">return</span> deffered.promise</span><br><span class="line">&#125;</span><br><span class="line">.....</span><br><span class="line"><span class="comment">//3. model到view过程已经有很多的框架或者既有写法了,不再赘述</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">"view"</span>).innerHtml(...)</span><br><span class="line">&#125;</span><br><span class="line">.....</span><br><span class="line"><span class="comment">// 在代码中复用以上的代码</span></span><br><span class="line"></span><br><span class="line">dataSource[<span class="number">0</span>].then(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">     display(parser1(d))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果parser 也promise化, 那么看起来如下, 有点自解释的感觉</span></span><br><span class="line">dataSource[<span class="number">0</span>]</span><br><span class="line"> .then(parsePromise)</span><br><span class="line"> .then(display)</span><br></pre></td></tr></table></figure>
+<p>三者之间除了2和3在最终数据格式上有逻辑规约,其他没有耦合;即使逻辑规约改变了, parser和display的替换都比hardcode 方便</p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>注意promise 除了很好避免了callback hell, 同时更可贵的是在抽象层面上将”过程”很好的封装, 假设所有中间过程的处理结果都是promise化,那么代码能够很清晰反应逻辑顺序</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//语言有时候很无力,看下面你大概就知道了</span></span><br><span class="line"><span class="tag">var</span> begin = <span class="function"><span class="title">A</span><span class="params">()</span></span></span><br><span class="line">begin.<span class="function"><span class="title">then</span><span class="params">(B)</span></span>.<span class="function"><span class="title">then</span><span class="params">(C)</span></span>.....</span><br></pre></td></tr></table></figure>
+                    
+                        
+
+                    
+                    
+                        <p>
+                            <a href="/2016/02/16/使用Promise合理处理模块封装和数据的关系/#post-footer" class="postShorten-excerpt_link link">
+                                注释和共享
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/2016/02/04/web加载性能/">
                             web加载性能
                         </a>
