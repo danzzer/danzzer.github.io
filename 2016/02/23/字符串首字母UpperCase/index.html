@@ -14,7 +14,7 @@
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
     <meta name="description" content="这个题目估计大家都知道要用split去做分割然后替换首字母
-但是比如 var strName ＝ “a b c”可以检点分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
+但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
 so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：
 12345var name = &apos;aaa ?bbb">
 <meta property="og:type" content="blog">
@@ -22,14 +22,14 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
 <meta property="og:url" content="http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/index.html">
 <meta property="og:site_name" content="Danzzer's Blog">
 <meta property="og:description" content="这个题目估计大家都知道要用split去做分割然后替换首字母
-但是比如 var strName ＝ “a b c”可以检点分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
+但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
 so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：
 12345var name = &apos;aaa ?bbb">
-<meta property="og:updated_time" content="2016-02-23T13:04:48.000Z">
+<meta property="og:updated_time" content="2016-02-23T13:11:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串首字母UpperCase">
 <meta name="twitter:description" content="这个题目估计大家都知道要用split去做分割然后替换首字母
-但是比如 var strName ＝ “a b c”可以检点分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
+但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
 so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：
 12345var name = &apos;aaa ?bbb">
     
@@ -231,7 +231,7 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <p>这个题目估计大家都知道要用split去做分割然后替换首字母</p>
-<p>但是比如 var strName ＝ “a b c”可以检点分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？</p>
+<p>但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？</p>
 <p>so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'aaa ?bbb ,ccc'</span>;</span><br><span class="line"><span class="keyword">var</span> uw=name.replace(<span class="regexp">/\b\w/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> word.toUpperCase()</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(uw)</span><br></pre></td></tr></table></figure>
 <blockquote>
