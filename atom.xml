@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://danzzer.github.io/"/>
-  <updated>2016-03-11T07:17:30.000Z</updated>
+  <updated>2016-03-11T07:34:36.000Z</updated>
   <id>http://danzzer.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://danzzer.github.io/2016/03/11/Nginx-Location%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/"/>
     <id>http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/</id>
     <published>2016-03-11T06:53:49.000Z</published>
-    <updated>2016-03-11T07:17:30.000Z</updated>
+    <updated>2016-03-11T07:34:36.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Location_u8BED_u6CD5_u89C4_u5219"><a href="#Location_u8BED_u6CD5_u89C4_u5219" class="headerlink" title="Location语法规则"></a>Location语法规则</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">optional_modifier</span> location_match &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中<font style="color:red">location_match</font>为URI匹配字符串</p>
 <p>optional_modifier:</p>
@@ -35,6 +35,7 @@
 2. 如果没有=匹配且存在^~的匹配则使用该规则且停止匹配
 3. 如果(none)匹配则先缓存该匹配
 </code></pre><p>B. 进行正则匹配，按照书写顺序第一个满足的将被使用且停止匹配<br>C. 如果A3有匹配则使用该规则<br>D. 无匹配则4XX</p>
+<h2 id="u53EF_u80FD_u5E38_u7528_u5199_u6CD5_28_u6CE8_u610F_u89C4_u5219_u987A_u5E8F_29"><a href="#u53EF_u80FD_u5E38_u7528_u5199_u6CD5_28_u6CE8_u610F_u89C4_u5219_u987A_u5E8F_29" class="headerlink" title="可能常用写法(注意规则顺序)"></a>可能常用写法(注意规则顺序)</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">= /B</span>/test.html &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">^~ /B</span>/C &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">~ /B</span>/.*$ &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">~ /(.*)$</span> &#123;</span><br><span class="line">    <span class="comment">#此处使用正则捕获, $1可以取出匹配的uri，当然也可以用nginx的变量实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="u6765_u6E90Blog"><a href="#u6765_u6E90Blog" class="headerlink" title="来源Blog"></a>来源Blog</h2><p>digitalocean上的此篇<a href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms" target="_blank" rel="external">Blog</a>不错，推荐下</p>
 ]]></content>
     <summary type="html">
