@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://danzzer.github.io/"/>
-  <updated>2016-02-23T13:11:20.000Z</updated>
+  <updated>2016-03-11T07:17:30.000Z</updated>
   <id>http://danzzer.github.io/</id>
   
   <author>
@@ -13,6 +13,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Nginx Location匹配规则]]></title>
+    <link href="http://danzzer.github.io/2016/03/11/Nginx-Location%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/"/>
+    <id>http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/</id>
+    <published>2016-03-11T06:53:49.000Z</published>
+    <updated>2016-03-11T07:17:30.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Location_u8BED_u6CD5_u89C4_u5219"><a href="#Location_u8BED_u6CD5_u89C4_u5219" class="headerlink" title="Location语法规则"></a>Location语法规则</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">optional_modifier</span> location_match &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<font style="color:red">location_match</font>为URI匹配字符串</p>
+<p>optional_modifier:</p>
+<ul>
+<li>(none): 无修饰则为前缀匹配</li>
+<li>=     : 前缀完全匹配, 即/path只匹配/path/单一目录的访问</li>
+<li>~ : 正则匹配，且大小写敏感</li>
+<li>~* : 正则匹配，且大小不敏感</li>
+<li>^~ : 前缀匹配，且如果匹配则不再进行正则匹配</li>
+</ul>
+<h2 id="Location_u5339_u914D_u987A_u5E8F"><a href="#Location_u5339_u914D_u987A_u5E8F" class="headerlink" title="Location匹配顺序"></a>Location匹配顺序</h2><p>A. 先进行前缀匹配(非正则匹配)</p>
+<pre><code>1. 对=进行前缀完全匹配，如果有匹配则使用该规则且停止匹配
+2. 如果没有=匹配且存在^~的匹配则使用该规则且停止匹配
+3. 如果(none)匹配则先缓存该匹配
+</code></pre><p>B. 进行正则匹配，按照书写顺序第一个满足的将被使用且停止匹配<br>C. 如果A3有匹配则使用该规则<br>D. 无匹配则4XX</p>
+<h2 id="u6765_u6E90Blog"><a href="#u6765_u6E90Blog" class="headerlink" title="来源Blog"></a>来源Blog</h2><p>digitalocean上的此篇<a href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms" target="_blank" rel="external">Blog</a>不错，推荐下</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Location_u8BED_u6CD5_u89C4_u5219"><a href="#Location_u8BED_u6CD5_u89C4_u5219" class="headerlink" title="Location语法规则"></a>Location语法]]>
+    </summary>
+    
+      <category term="nginx" scheme="http://danzzer.github.io/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[字符串首字母UpperCase]]></title>

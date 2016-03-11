@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Danzzer&#39;s Blog">
-    <title>all-tags - Danzzer&#39;s Blog</title>
+    <title>标签: nginx - Danzzer&#39;s Blog</title>
     <meta name="author" content="Danzzer">
     
     
@@ -15,13 +15,12 @@
     
     <meta name="description" content="My thoughts here">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="all-tags">
-<meta property="og:url" content="http://danzzer.github.io/all-tags/index.html">
+<meta property="og:title" content="Danzzer's Blog">
+<meta property="og:url" content="http://danzzer.github.io/tags/nginx/index.html">
 <meta property="og:site_name" content="Danzzer's Blog">
 <meta property="og:description" content="My thoughts here">
-<meta property="og:updated_time" content="2016-02-05T02:28:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="all-tags">
+<meta name="twitter:title" content="Danzzer's Blog">
 <meta name="twitter:description" content="My thoughts here">
     
     
@@ -199,90 +198,79 @@
                  class="
                         hasCoverMetaIn
                         ">
-                <div id="tags-archives" class="main-content-wrap">
-    <form id="filter-form" action="#">
-        <input name="tag" type="text" class="form-control input--xlarge" placeholder="搜索标签" autofocus="autofocus">
-    </form>
-    <h4 class="archive-result text-color-base text-xlarge"></h4>
-    <section>
-        
-            <a class="tag tag--primary tag--small" href="#javascript 杂技-list" data-tag="javascript 杂技">
-                javascript 杂技
-            </a>
-        
-            <a class="tag tag--primary tag--small" href="#nginx-list" data-tag="nginx">
-                nginx
-            </a>
-        
-            <a class="tag tag--primary tag--small" href="#react react-router javascript-list" data-tag="react react-router javascript">
-                react react-router javascript
-            </a>
-        
-    </section>
-    <section class="boxes">
-        
-            <div id="javascript 杂技-list" class="archive box" data-tag="javascript 杂技">
-                <h4 class="archive-title">
-                    <a class="link-unstyled" href="/tags/javascript-杂技">
-                        javascript 杂技 (1)
-                    </a>
-                </h4>
-                <ul class="archive-posts">
+                
+    
+
+<section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
                     
-                        <li class="archive-post">
-                            <a class="archive-post-title" href="/2016/02/23/字符串首字母UpperCase/">
-                                字符串首字母UpperCase
-                            </a>
-                            <span class="archive-post-date">
-                                 - 2月 23, 2016
-                            </span>
-                        </li>
+                        <a class="link-unstyled" href="/2016/03/11/Nginx-Location匹配规则/">
+                            Nginx Location匹配规则
+                        </a>
                     
-                </ul>
-            </div>
-        
-            <div id="nginx-list" class="archive box" data-tag="nginx">
-                <h4 class="archive-title">
-                    <a class="link-unstyled" href="/tags/nginx">
-                        nginx (1)
-                    </a>
-                </h4>
-                <ul class="archive-posts">
-                    
-                        <li class="archive-post">
-                            <a class="archive-post-title" href="/2016/03/11/Nginx-Location匹配规则/">
-                                Nginx Location匹配规则
-                            </a>
-                            <span class="archive-post-date">
-                                 - 3月 11, 2016
-                            </span>
-                        </li>
-                    
-                </ul>
-            </div>
-        
-            <div id="react react-router javascript-list" class="archive box" data-tag="react react-router javascript">
-                <h4 class="archive-title">
-                    <a class="link-unstyled" href="/tags/react-react-router-javascript">
-                        react react-router javascript (1)
-                    </a>
-                </h4>
-                <ul class="archive-posts">
-                    
-                        <li class="archive-post">
-                            <a class="archive-post-title" href="/2016/01/16/react-router-快速印象/">
-                                react-router 快速印象
-                            </a>
-                            <span class="archive-post-date">
-                                 - 1月 16, 2016
-                            </span>
-                        </li>
-                    
-                </ul>
-            </div>
-        
-    </section>
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Fri Mar 11 2016 14:53:49 GMT+0800">
+	
+		    3月 11, 2016
+    	
+    </time>
+    
 </div>
+            </div>
+            
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <h2 id="Location_u8BED_u6CD5_u89C4_u5219"><a href="#Location_u8BED_u6CD5_u89C4_u5219" class="headerlink" title="Location语法规则"></a>Location语法规则</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">optional_modifier</span> location_match &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<font style="color:red">location_match</font>为URI匹配字符串</p>
+<p>optional_modifier:</p>
+<ul>
+<li>(none): 无修饰则为前缀匹配</li>
+<li>=     : 前缀完全匹配, 即/path只匹配/path/单一目录的访问</li>
+<li>~ : 正则匹配，且大小写敏感</li>
+<li>~* : 正则匹配，且大小不敏感</li>
+<li>^~ : 前缀匹配，且如果匹配则不再进行正则匹配</li>
+</ul>
+<h2 id="Location_u5339_u914D_u987A_u5E8F"><a href="#Location_u5339_u914D_u987A_u5E8F" class="headerlink" title="Location匹配顺序"></a>Location匹配顺序</h2><p>A. 先进行前缀匹配(非正则匹配)</p>
+<pre><code>1. 对=进行前缀完全匹配，如果有匹配则使用该规则且停止匹配
+2. 如果没有=匹配且存在^~的匹配则使用该规则且停止匹配
+3. 如果(none)匹配则先缓存该匹配
+</code></pre><p>B. 进行正则匹配，按照书写顺序第一个满足的将被使用且停止匹配<br>C. 如果A3有匹配则使用该规则<br>D. 无匹配则4XX</p>
+<h2 id="u6765_u6E90Blog"><a href="#u6765_u6E90Blog" class="headerlink" title="来源Blog"></a>来源Blog</h2><p>digitalocean上的此篇<a href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms" target="_blank" rel="external">Blog</a>不错，推荐下</p>
+
+                    
+                        
+
+                    
+                    
+                        <p>
+                            <a href="/2016/03/11/Nginx-Location匹配规则/#post-footer" class="postShorten-excerpt_link link">
+                                注释和共享
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">第 1 页 共 1 页</li>
+    </ul>
+</div>
+
+</section>
+
+
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">

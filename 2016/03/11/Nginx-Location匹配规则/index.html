@@ -6,32 +6,41 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Danzzer&#39;s Blog">
-    <title>字符串首字母UpperCase - Danzzer&#39;s Blog</title>
+    <title>Nginx Location匹配规则 - Danzzer&#39;s Blog</title>
     <meta name="author" content="Danzzer">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="这个题目估计大家都知道要用split去做分割然后替换首字母
-但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
-so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：
-12345var name = &apos;aaa ?bbb">
+    <meta name="description" content="Location语法规则12345location optional_modifier location_match &amp;#123;    . . .&amp;#125;
+其中location_match为URI匹配字符串
+optional_modifier:
+
+(none): 无修饰则为前缀匹配
+=     : 前缀完全匹配, 即/path只匹配/path/单一目录的访问
+~ : 正则匹配，且大小写敏感">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="字符串首字母UpperCase">
-<meta property="og:url" content="http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/index.html">
+<meta property="og:title" content="Nginx Location匹配规则">
+<meta property="og:url" content="http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/index.html">
 <meta property="og:site_name" content="Danzzer's Blog">
-<meta property="og:description" content="这个题目估计大家都知道要用split去做分割然后替换首字母
-但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
-so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：
-12345var name = &apos;aaa ?bbb">
-<meta property="og:updated_time" content="2016-02-23T13:11:20.000Z">
+<meta property="og:description" content="Location语法规则12345location optional_modifier location_match &amp;#123;    . . .&amp;#125;
+其中location_match为URI匹配字符串
+optional_modifier:
+
+(none): 无修饰则为前缀匹配
+=     : 前缀完全匹配, 即/path只匹配/path/单一目录的访问
+~ : 正则匹配，且大小写敏感">
+<meta property="og:updated_time" content="2016-03-11T07:17:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符串首字母UpperCase">
-<meta name="twitter:description" content="这个题目估计大家都知道要用split去做分割然后替换首字母
-但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？
-so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：
-12345var name = &apos;aaa ?bbb">
+<meta name="twitter:title" content="Nginx Location匹配规则">
+<meta name="twitter:description" content="Location语法规则12345location optional_modifier location_match &amp;#123;    . . .&amp;#125;
+其中location_match为URI匹配字符串
+optional_modifier:
+
+(none): 无修饰则为前缀匹配
+=     : 前缀完全匹配, 即/path只匹配/path/单一目录的访问
+~ : 正则匹配，且大小写敏感">
     
     
         
@@ -215,13 +224,13 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            字符串首字母UpperCase
+            Nginx Location匹配规则
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue Feb 23 2016 21:00:28 GMT+0800">
+    <time itemprop="datePublished" content="Fri Mar 11 2016 14:53:49 GMT+0800">
 	
-		    2月 23, 2016
+		    3月 11, 2016
     	
     </time>
     
@@ -230,14 +239,22 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>这个题目估计大家都知道要用split去做分割然后替换首字母</p>
-<p>但是比如 var strName ＝ “a b c”可以简单分割后处理，but 如果是 strName ＝ ”a   b，?c”呢？</p>
-<p>so除了考察下split和基本字符串操作（你当然会比较+ 和 join的区别咯，不知道的可以趁机google下）,貌似并不实用. 其实正则写法挺简单的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'aaa ?bbb ,ccc'</span>;</span><br><span class="line"><span class="keyword">var</span> uw=name.replace(<span class="regexp">/\b\w/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> word.toUpperCase()</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(uw)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>\b是单词的开头或者结尾匹配， 而且toUpperCase只对字母有效</p>
-</blockquote>
-<p>嗯，感觉吊吊的</p>
+            <h2 id="Location_u8BED_u6CD5_u89C4_u5219"><a href="#Location_u8BED_u6CD5_u89C4_u5219" class="headerlink" title="Location语法规则"></a>Location语法规则</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">optional_modifier</span> location_match &#123;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<font style="color:red">location_match</font>为URI匹配字符串</p>
+<p>optional_modifier:</p>
+<ul>
+<li>(none): 无修饰则为前缀匹配</li>
+<li>=     : 前缀完全匹配, 即/path只匹配/path/单一目录的访问</li>
+<li>~ : 正则匹配，且大小写敏感</li>
+<li>~* : 正则匹配，且大小不敏感</li>
+<li>^~ : 前缀匹配，且如果匹配则不再进行正则匹配</li>
+</ul>
+<h2 id="Location_u5339_u914D_u987A_u5E8F"><a href="#Location_u5339_u914D_u987A_u5E8F" class="headerlink" title="Location匹配顺序"></a>Location匹配顺序</h2><p>A. 先进行前缀匹配(非正则匹配)</p>
+<pre><code>1. 对=进行前缀完全匹配，如果有匹配则使用该规则且停止匹配
+2. 如果没有=匹配且存在^~的匹配则使用该规则且停止匹配
+3. 如果(none)匹配则先缓存该匹配
+</code></pre><p>B. 进行正则匹配，按照书写顺序第一个满足的将被使用且停止匹配<br>C. 如果A3有匹配则使用该规则<br>D. 无匹配则4XX</p>
+<h2 id="u6765_u6E90Blog"><a href="#u6765_u6E90Blog" class="headerlink" title="来源Blog"></a>来源Blog</h2><p>digitalocean上的此篇<a href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms" target="_blank" rel="external">Blog</a>不错，推荐下</p>
 
             
                 
@@ -250,7 +267,7 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/javascript-杂技/">javascript 杂技</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/nginx/">nginx</a>
 
             </div>
         
@@ -259,7 +276,7 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/11/Nginx-Location匹配规则/"  data-tooltip="Nginx Location匹配规则">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -267,7 +284,7 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/16/使用Promise合理处理模块封装和数据的关系/" data-tooltip="使用Promise合理处理模块封装和数据的关系">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/23/字符串首字母UpperCase/" data-tooltip="字符串首字母UpperCase">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -282,17 +299,17 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -329,7 +346,7 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/11/Nginx-Location匹配规则/"  data-tooltip="Nginx Location匹配规则">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -337,7 +354,7 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/16/使用Promise合理处理模块封装和数据的关系/" data-tooltip="使用Promise合理处理模块封装和数据的关系">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/23/字符串首字母UpperCase/" data-tooltip="字符串首字母UpperCase">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -352,17 +369,17 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -382,17 +399,17 @@ so除了考察下split和基本字符串操作（你当然会比较+ 和 join的
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/02/23/字符串首字母UpperCase/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://danzzer.github.io/2016/03/11/Nginx-Location匹配规则/">
                 <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
             </a>
         </li>
